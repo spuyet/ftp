@@ -1,49 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp.h                                              :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/12 14:23:10 by spuyet            #+#    #+#             */
-/*   Updated: 2014/05/12 17:33:26 by spuyet           ###   ########.fr       */
+/*   Created: 2014/05/12 17:11:06 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/12 18:25:23 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FTP_H
-# define FTP_H
+#include <unistd.h>
+#include <stdlib.h>
+#include "ftp.h"
 
-# define QUEUE	10
-
-# include <netinet/in.h>
-
-typedef struct			s_serv
+void		run_server(t_serv *serv)
 {
-	int					sock;
-	int					cs;
-	int					run;
-	unsigned int		cslen;
-	struct sockaddr_in	csin;
-	struct sockaddr_in	sin;
-}						t_serv;
+	char	buf[1024];
+	int		r;
 
-
-/*
-** init.c
-*/
-
-t_serv					*init(char *str);
-
-/*
-** nan.c
-*/
-
-int						ft_nan(char *str);
-
-/*
-** server.c
-*/
-
-void					run_server(t_serv *serv);
-
-#endif
+	ft_bzero((void *)buf, 1024);
+	ft_putendl("Dessine moi un mouton !");
+	while ((r = read(serv->cs, buf, 1023)) > 0)
+	{
+		buf[r] = 0;
+		ft_putstr("ton message est: [");
+		ft_putstr(buf);
+		ft_putstr("]\n");
+	}
+	ft_putendl("exit");
+	exit(0);
+}
