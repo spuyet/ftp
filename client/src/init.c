@@ -6,9 +6,12 @@
 /*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/12 14:15:29 by spuyet            #+#    #+#             */
-/*   Updated: 2014/05/13 11:07:47 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/13 14:58:55 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
+#include <arpa/inet.h>
 
 #include <sys/socket.h>
 #include <stdlib.h>
@@ -16,22 +19,25 @@
 #include "libft.h"
 #include "ftp.h"
 
-t_serv					*init(char *str)
+t_serv					*init_client(char *host, char *port)
 {
-	t_serv				*serv;
+	t_serv				*client;
 	struct protoent		*protocol;
 
 	if ((protocol = getprotobyname("tcp")) == 0)
 		return (NULL);
-	serv = (t_serv *)malloc(sizeof(t_serv));
-	ft_bzero(serv, sizeof(t_serv));
-	serv->sock = socket(PF_INET, SOCK_STREAM, protocol->p_proto);
-	serv->sin.sin_family = AF_INET;
-	serv->sin.sin_port = htons(ft_atoi(str));
-	serv->sin.sin_addr.s_addr = htonl(INADDR_ANY);
-	if (bind(serv->sock, (struct sockaddr *)&(serv->sin), sizeof(serv->sin)) == -1)
-		return (NULL);
-	serv->run = 1;
-	listen(serv->sock, QUEUE);
-	return (serv);
+	client = (t_serv *)malloc(sizeof(t_serv));
+	ft_bzero(client, sizeof(t_serv));
+	client->sock = socket(PF_INET, SOCK_STREAM, protocol->p_proto);
+	client->sin.sin_family = AF_INET;
+	client->sin.sin_port = htons(ft_atoi(port));
+	client->sin.sin_addr.s_addr = inet_addr(host);
+	if (connect(client->sock, (struct sockaddr *)&(client->sin), sizeof(client->sin)) == -1)
+	{
+		ft_putendl("Unable to connect to the server");
+		client->run = 0;
+	}
+	else
+		client->run = 1;
+	return (client);
 }

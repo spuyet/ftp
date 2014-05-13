@@ -1,49 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftp.h                                              :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/12 14:23:10 by spuyet            #+#    #+#             */
-/*   Updated: 2014/05/12 17:33:26 by spuyet           ###   ########.fr       */
+/*   Created: 2014/05/13 09:42:58 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/13 11:26:19 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FTP_H
-# define FTP_H
+#include <stdlib.h>
+#include "libft.h"
+#include "ftp.h"
 
-# define QUEUE	10
-
-# include <netinet/in.h>
-
-typedef struct			s_serv
+t_serv			*init_data()
 {
-	int					sock;
-	int					cs;
-	int					run;
-	unsigned int		cslen;
-	struct sockaddr_in	csin;
-	struct sockaddr_in	sin;
-}						t_serv;
+	t_serv		*data;
+	char		*str;
+	int			port;
 
-
-/*
-** init.c
-*/
-
-t_serv					*init(char *str);
-
-/*
-** nan.c
-*/
-
-int						ft_nan(char *str);
-
-/*
-** server.c
-*/
-
-void					run_server(t_serv *serv);
-
-#endif
+	port = 1025;
+	str = ft_itoa(port);
+	while ((data = init(str)) == NULL)
+	{
+		if (port > 1050)
+			break ;
+		free(str);
+		port++;
+		str = ft_itoa(port);
+	}
+	free(str);
+	return (data);
+}
