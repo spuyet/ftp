@@ -1,61 +1,48 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ftp.h                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/05/12 14:23:10 by spuyet            #+#    #+#             */
-/*   Updated: 2014/05/13 13:23:42 by spuyet           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FTP_H
 # define FTP_H
 
-# define QUEUE	10
-
-# include <netinet/in.h>
-
-typedef struct			s_serv
-{
-	int					sock;
-	int					cs;
-	int					run;
-	unsigned int		cslen;
-	struct sockaddr_in	csin;
-	struct sockaddr_in	sin;
-}						t_serv;
+# define BUFFER		1024
 
 /*
-** data.c
+** c_create.c
 */
 
-t_serv					*init_data(void);
+int		c_create(char *host, int port);
 
 /*
-** init.c
+** c_run.c
 */
 
-t_serv					*init(char *str);
-t_serv					*init_client(char *host, char *port);
+void	c_run(char *host, int port);
 
 /*
-** msg.c
+** c_usage.c
 */
 
-void					msg_connection(char *host, char *port);
+void	c_usage(char *name);
 
 /*
-** nan.c
+** s_child.c
 */
 
-int						ft_nan(char *str);
+void	s_child(int cs);
 
 /*
-** server.c
+** s_create.c
 */
 
-void					run_server(t_serv *serv);
+int		s_create(int port);
+
+/*
+** s_run
+*/
+
+void	s_run(int port);
+
+/*
+** s_usage.c
+*/
+
+void	s_usage(char *name);
 
 #endif
