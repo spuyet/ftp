@@ -16,6 +16,7 @@ void		c_run(char *host, int port)
 	run = 1;
 	while (run)
 	{
+		ft_putstr("$ > ");
 		if ((n = get_next_line(0, &buf)) < 1)
 			break ;
 		write(sock, buf, BUFFER);
@@ -23,4 +24,5 @@ void		c_run(char *host, int port)
 			run = 0;
 		free(buf);
 	}
+	close(sock);
 }
