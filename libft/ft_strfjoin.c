@@ -34,10 +34,6 @@ static char	*fill_string(char *str1, char *str2, char *str3)
 			i++;
 		}
 		str3[i] = '\0';
-		if (*str1)
-			free(str1);
-		if (*str2)
-			free(str2);
 		return (str3);
 	}
 	return (NULL);
@@ -56,7 +52,9 @@ char		*ft_strfjoin(char *s1, char *s2)
 	{
 		len = ft_strlen(str1) + ft_strlen(str2) + 1;
 		str3 = (char *) malloc(len * sizeof(char));
-		return (fill_string(str1, str2, str3));
+		fill_string(str1, str2, str3);
+		free(str1);
+		return (str3);
 	}
 	return (NULL);
 }

@@ -1,3 +1,5 @@
+#include <sys/stat.h>
+#include <dirent.h>
 #include <netinet/in.h>
 #include <unistd.h>
 #include "ftp.h"
@@ -17,6 +19,24 @@ static void	s_thread(int *run, int sock, int *cs)
 	close(*cs);
 }
 
+static int	s_home(void)
+{
+	if (opendir(HOME) == NULL)
+	{
+		if (mkdir(HOME, 0755) == -1)
+		{
+			ft_putendl("unable to create home directory.");
+			return (1);
+		}
+	}
+	if (chdir(HOME) == -1)
+	{
+		ft_putendl("unable to find home directory");
+		return (1);
+	}
+	return (0);
+}
+
 void		s_run(int port)
 {
 	unsigned int		clen;
@@ -29,6 +49,8 @@ void		s_run(int port)
 	if (sock == -1)
 		return ;
 	run = 1;
+	if (s_home())
+		run = 0;
 	while (run)
 	{
 		cs = accept(sock, (struct sockaddr *)&client, &clen);

@@ -1,4 +1,5 @@
 #include <sys/socket.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 #include "ftp.h"
@@ -6,17 +7,20 @@
 
 void		s_child(int cs)
 {
-	int		run;
 	char	buf[BUFFER];
+	char	*pwd;
 
-	run = 1;
 	ft_putendl("A client is connected !");
-	while (run)
+	pwd = ft_strnew(1);
+	pwd[0] = '.';
+	while (1)
 	{
 		ft_bzero((void *)buf, BUFFER);
 		recv(cs, (void *)buf, BUFFER - 1, 0);
-		ft_putstr(buf);
+//		ft_putstr(buf);
 		if (ft_strcmp(buf, "quit") == 0)
-			run = 0;
+			break ;
+		else
+			s_cmd(cs, buf, pwd);
 	}
 }
