@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   c_cd.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/05/15 16:17:12 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/15 17:07:41 by spuyet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/socket.h>
 #include <unistd.h>
 #include "libft.h"
@@ -26,7 +38,7 @@ static void		c_cd2(char **tab, int sock)
 	ft_putendl("msg send");
 	if ((data = ft_recvmsg(sock, data)) == NULL)
 		return ;
-	ft_putendl("reponse recu");
+	ft_putendl("reponse recue");
 	ft_putstr(tab[0]);
 	ft_putstr(": ");
 	ft_putendl(data);

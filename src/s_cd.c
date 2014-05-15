@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   s_cd.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/05/15 16:17:26 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/15 17:10:54 by spuyet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
@@ -22,9 +34,12 @@ void	s_cd(char **tab, int cs, t_pwd *pwd)
 	data = NULL;
 	tmp = getcwd(NULL, 0);
 	if ((data = ft_recvmsg(cs, data)) == NULL)
+	{
+		ft_putendl("meow");
 		return ;
+	}
 	else if (chdir(data) == -1)
-		msg = ft_strdup("ERROR");
+		msg = "ERROR";
 	else
 	{
 		cwd = getcwd(NULL, 0);
@@ -34,14 +49,15 @@ void	s_cd(char **tab, int cs, t_pwd *pwd)
 			free(pwd->serv);
 			pwd->serv = find_home(cwd);
 			free(cwd);
-			msg = ft_strdup("OK");
+			msg = "OK";
 		}
 		else
 		{
 			chdir(tmp);
 			free(tmp);
-			msg = ft_strdup("ERROR");
+			msg = "ERROR";
 		}
 	}
+	ft_putendl(msg);
 	ft_sendmsg(cs, msg);
 }
