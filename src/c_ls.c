@@ -18,10 +18,10 @@ void	c_ls(char **tab, int sock)
 		ft_putendl(": unable to send command");
 		return ;
 	}
-	bzero((void *)&h, sizeof(t_header));
+	ft_bzero((void *)&h, sizeof(t_header));
 	read(sock, (void *)&h, sizeof(t_header));
 	data = ft_strnew(h.size);
-	if ((n = recv(sock, data, h.size, 0)) < 1)
+	if ((n = recv(sock, data, h.size, 0)) < 0)
 	{
 		ft_putstr(tab[0]);
 		ft_putendl(": no response from server");

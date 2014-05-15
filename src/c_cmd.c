@@ -21,6 +21,7 @@ void			c_cmd(char *buf, int sock)
 		{"list", &c_list},
 		{"ls", c_ls},
 		{"pwd", c_pwd},
+		{"cd", c_cd},
 		{0, c_error}
 	};
 	while (funcs[i].cmd)

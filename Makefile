@@ -15,10 +15,10 @@
 CFLAGS = -Wall -Wextra -Werror -I include -I libft/includes
 
 S_FILES = s_child.c s_cmd.c s_create.c s_ls.c s_main.c s_pwd.c s_run.c \
-s_usage.c utils.c \
+s_usage.c utils.c s_cd.c msg.c \
 
-C_FILES = c_args.c c_cmd.c c_create.c c_list.c c_ls.c c_main.c c_pwd.c \
-c_run.c c_usage.c utils.c \
+C_FILES = c_args.c c_cd.c c_cmd.c c_create.c c_list.c c_ls.c c_main.c c_pwd.c \
+c_run.c c_usage.c utils.c msg.c\
 
 LIBFT = libft
 

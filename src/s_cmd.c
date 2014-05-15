@@ -1,7 +1,7 @@
 #include "ftp.h"
 #include "libft.h"
 
-void		s_cmd(int cs, char *buf, char *pwd)
+void		s_cmd(int cs, char *buf, t_pwd *pwd)
 {
 	int		i;
 	char	**tab;
@@ -11,6 +11,7 @@ void		s_cmd(int cs, char *buf, char *pwd)
 	static t_scmds const funcs[] = {
 		{"ls", &s_ls},
 		{"pwd", &s_pwd},
+		{"cd", &s_cd},
 		{0, 0}
 	};
 	while (funcs[i].cmd)
