@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   c_ls.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/05/16 10:16:24 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/16 10:28:11 by spuyet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -6,10 +18,9 @@
 
 void	c_ls(char **tab, int sock)
 {
-	int			n;
 	char		*data;
-	t_header	h;
 
+	data = NULL;
 	if (c_args(tab))
 		return ;
 	if (send(sock, tab[0], ft_strlen(tab[0]), 0) == -1)
@@ -18,15 +29,9 @@ void	c_ls(char **tab, int sock)
 		ft_putendl(": unable to send command");
 		return ;
 	}
-	ft_bzero((void *)&h, sizeof(t_header));
-	read(sock, (void *)&h, sizeof(t_header));
-	data = ft_strnew(h.size);
-	if ((n = recv(sock, data, h.size, 0)) < 0)
-	{
-		ft_putstr(tab[0]);
-		ft_putendl(": no response from server");
-		return ;
-	}
+	data = ft_recvmsg(sock, data);
+	if (data == NULL)
+		ft_putendl("unable to receive message");
 	ft_putendl(data);
 	free(data);
 }

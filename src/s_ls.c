@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   s_ls.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/05/16 10:24:05 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/16 11:23:20 by spuyet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 
 #include <sys/socket.h>
@@ -13,7 +25,6 @@ void	s_ls(char **tab, int cs, t_pwd *pwd)
 	char			*data;
 	char			*tmp;
 	struct dirent	*dir;
-	t_header		h;
 
 	(void)tab;
 	data = ft_strnew(0);
@@ -38,9 +49,7 @@ void	s_ls(char **tab, int cs, t_pwd *pwd)
 		}
 	}
 	closedir(cur);
-	h.size = ft_strlen(data);
-	write(cs, (void *)&h, sizeof(t_header));
-	if (send(cs, (void *)data, h.size, 0) == -1)
-		ft_putendl("Unable to send data");
+	if (!ft_sendmsg(cs, data))
+		ft_putendl("unable to send message");
 	free(data);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   c_run.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/05/16 10:32:56 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/16 10:37:19 by spuyet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdlib.h>
 #include "ftp.h"
@@ -20,6 +32,8 @@ void		c_run(char *host, int port)
 		ft_putstr("$ > ");
 		if ((n = get_next_line(0, &buf)) < 1)
 			break ;
+		else if (!n)
+			;
 		else if (ft_strcmp(buf, "quit") == 0)
 			run = 0;
 		else

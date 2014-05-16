@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   s_pwd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/05/16 10:29:24 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/16 10:33:38 by spuyet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/socket.h>
 #include <unistd.h>
 #include "ftp.h"
@@ -5,11 +17,7 @@
 
 void	s_pwd(char **tab, int cs, t_pwd *pwd)
 {
-	t_header	h;
-
 	(void)tab;
-	h.size = ft_strlen(pwd->serv);
-	write(cs, (void *)&h, sizeof(t_header));
-	if (send(cs, (void *)pwd->serv, h.size, 0) == -1)
-		ft_putendl("Unable to send pwd");
+	if (!ft_sendmsg(cs, pwd->serv))
+		ft_putendl("unable to send message");
 }
