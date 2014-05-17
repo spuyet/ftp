@@ -23,14 +23,13 @@ void	c_pwd(char **tab, int sock)
 	data = NULL;
 	if (c_args(tab))
 		return ;
-	if (send(sock, tab[0], ft_strlen(tab[0]), 0) == -1)
-	{
-		ft_putstr(tab[0]);
-		ft_putendl(": unable to send command");
-		return ;
-	}
+	if (!ft_sendmsg(sock, tab[0]))
+		ft_putendl("unable to send cmd");
 	if ((data = ft_recvmsg(sock, data)) == NULL)
 		ft_putendl("unable to receive pwd");
-	ft_putendl(data);
-	free(data);
+	else
+	{
+		ft_putendl(data);
+		free(data);
+	}
 }

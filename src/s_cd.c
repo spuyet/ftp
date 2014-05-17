@@ -15,9 +15,62 @@
 #include "libft.h"
 #include "ftp.h"
 
+char		*find_home(char	*pwd)
+{
+	while (*pwd && ft_strncmp(pwd, HOME, ft_strlen(HOME)))
+		pwd++;
+	if (!*pwd)
+		return (NULL);
+	return (pwd + ft_strlen(HOME));
+}
+
+char		*ft_chdir(t_pwd *pwd, char *cur)
+{
+	char	*new;
+
+	free(pwd->local);
+	pwd->local = cur;
+	new = find_home(cur);
+	pwd->serv = ft_strdup(new);
+	return ("OK");
+}
+
+char		*ft_cdhome(t_pwd *pwd, char *cur)
+{
+	free(pwd->local);
+	pwd->local = cur;
+	free(pwd->serv);
+	pwd->serv = ft_strdup("/");
+	return ("OK");
+}
+
 void		s_cd(char **tab, int cs, t_pwd *pwd)
 {
 	(void)tab;
-	(void)cs;
-	(void)pwd;
+	char	*data;
+	char	*msg;
+	char	*cur;
+
+	data = NULL;
+	if ((data = ft_recvmsg(cs, data)) == NULL)
+		ft_putendl("unable to receive cd arg");
+	if (chdir(data) == -1)
+		msg = "ERROR";
+	else
+	{
+		cur = getcwd(NULL, 0);
+		if (ft_strcmp(pwd->home, cur) == 0)
+			msg = ft_cdhome(pwd, cur);
+		else if (ft_strlen(pwd->home) < ft_strlen(cur)) //SOURCE DE HACK
+			msg = ft_chdir(pwd, cur);
+		else
+		{
+			chdir(pwd->local);
+			msg = "ERROR";
+		}
+	}
+	free(data);
+	ft_putendl(msg);
+	if (!ft_sendmsg(cs, msg))
+		ft_putendl("unable to send msg");
 }

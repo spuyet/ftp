@@ -56,7 +56,7 @@ void	c_cd(char **tab, int sock);
 ** c_cmd.c
 */
 
-void	c_cmd(char *buf, int sock);
+void	c_cmd(char *buf, int sock, int *run);
 
 /*
 ** c_create.c

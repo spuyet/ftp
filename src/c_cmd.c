@@ -20,7 +20,8 @@ static void		c_error(char **tab, int sock)
 	ft_putendl(": Unknow command");
 }
 
-void			c_cmd(char *buf, int sock)
+
+void			c_cmd(char *buf, int sock, int *run)
 {
 	int		i;
 	int		b;
@@ -28,6 +29,11 @@ void			c_cmd(char *buf, int sock)
 
 	i = 0;
 	b = 0;
+	if (!ft_strcmp(buf, "quit"))
+	{
+		*run = 0;
+		return ;
+	}
 	tab = ft_strsplit(buf, ' ');
 	static t_cmds const funcs[]={
 		{"list", &c_list},

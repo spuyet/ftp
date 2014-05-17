@@ -17,8 +17,16 @@ void		s_cmd(int cs, char *buf, t_pwd *pwd)
 	while (funcs[i].cmd)
 	{
 		if (ft_strcmp(funcs[i].cmd, tab[0]) == 0)
+		{
 			funcs[i].f(tab, cs, pwd);
+			break ;
+		}
 		i++;
+	}
+	if (i == 3)
+	{
+		ft_putstr("Unknow command: ");
+		ft_putendl(buf);
 	}
 	free_tab(tab);
 }

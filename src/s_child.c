@@ -61,9 +61,10 @@ static t_pwd	*init_pwd(void)
 
 void			s_child(int cs)
 {
-	char	buf[BUFFER];
 	t_pwd	*pwd;
+	char	*buf;
 
+	buf = NULL;
 	pwd = init_pwd();
 	if (pwd == NULL)
 	{
@@ -73,8 +74,8 @@ void			s_child(int cs)
 	ft_putendl("A client is connected !");
 	while (1)
 	{
-		ft_bzero((void *)buf, BUFFER);
-		recv(cs, (void *)buf, BUFFER - 1, 0);
+		if ((buf = ft_recvmsg(cs, buf)) == NULL)
+			ft_putendl("unable to receive cmd");
 		if (ft_strcmp(buf, "quit") == 0)
 			break ;
 		else

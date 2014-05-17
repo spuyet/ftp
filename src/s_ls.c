@@ -35,17 +35,17 @@ void	s_ls(char **tab, int cs, t_pwd *pwd)
 	{
 		if (!ft_strcmp(pwd->serv, "/"))
 		{
-			if (!ft_strcmp(".", dir->d_name) && !ft_strcmp("..", dir->d_name))
+			if (ft_strcmp(".", dir->d_name) && ft_strcmp("..", dir->d_name))
 			{
 				if (*data)
 					data = ft_strfjoin(data, "\n");
 				data = ft_strfjoin(data, dir->d_name);
 			}
-			else
-			{	if(*data)
-					data = ft_strfjoin(data, "\n");
-				data = ft_strfjoin(data, dir->d_name);
-			}
+		}
+		else
+		{	if (*data)
+			data = ft_strfjoin(data, "\n");
+			data = ft_strfjoin(data, dir->d_name);
 		}
 	}
 	closedir(cur);

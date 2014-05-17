@@ -15,6 +15,17 @@
 #include "ftp.h"
 #include "libft.h"
 
+int			ft_space(char *s)
+{
+	while (*s)
+	{
+		if (*s != 32)
+			return (0);
+		s++;
+	}
+	return (1);
+}
+
 void		c_run(char *host, int port)
 {
 	int		n;
@@ -32,14 +43,12 @@ void		c_run(char *host, int port)
 		ft_putstr("$ > ");
 		if ((n = get_next_line(0, &buf)) < 1)
 			break ;
-		else if (!n)
+		if (!buf || !*buf || ft_space(buf))
 			;
-		else if (ft_strcmp(buf, "quit") == 0)
-			run = 0;
 		else
-			c_cmd(buf, sock);
-	//	write(sock, buf, BUFFER);
-		free(buf);
+			c_cmd(buf, sock, &run);
+		if (buf)
+			free(buf);
 	}
 	close(sock);
 }

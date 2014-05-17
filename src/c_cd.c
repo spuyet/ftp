@@ -26,13 +26,12 @@ static void		c_cd2(char **tab, int sock)
 	char		*data;
 
 	data = NULL;
-	(void)data;
 	if (!ft_sendmsg(sock, tab[0]))
-		return ;
+		ft_putendl("unable to send cmd cd");
 	if (!ft_sendmsg(sock, tab[1]))
-		return ;
+		ft_putendl("unable to send cd arg");
 	if ((data = ft_recvmsg(sock, data)) == NULL)
-		return ;
+		ft_putendl("unable to receive return code");
 	ft_putstr(tab[0]);
 	ft_putstr(": ");
 	ft_putendl(data);
@@ -40,14 +39,7 @@ static void		c_cd2(char **tab, int sock)
 
 void			c_cd(char **tab, int sock)
 {
-	int		size;
-	int		i;
-
-	i = 0;
-	while (tab[i])
-		ft_putendl(tab[i++]);
-	size = size_tab(tab);
-	if (size == 2)
+	if (size_tab(tab) == 2)
 		c_cd2(tab, sock);
 	else
 		c_cderr(tab[0]);
