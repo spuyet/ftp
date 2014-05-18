@@ -12,6 +12,8 @@ void		s_cmd(int cs, char *buf, t_pwd *pwd)
 		{"ls", &s_ls},
 		{"pwd", &s_pwd},
 		{"cd", &s_cd},
+		{"get", &s_get},
+		{"put", &s_put},
 		{0, 0}
 	};
 	while (funcs[i].cmd)
@@ -23,7 +25,7 @@ void		s_cmd(int cs, char *buf, t_pwd *pwd)
 		}
 		i++;
 	}
-	if (i == 3)
+	if (i == 5)
 	{
 		ft_putstr("Unknow command: ");
 		ft_putendl(buf);

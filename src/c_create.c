@@ -1,7 +1,6 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-
 #include "libft.h"
 
 int		c_create(char *host, int port)

@@ -46,14 +46,14 @@ char		*ft_cdhome(t_pwd *pwd, char *cur)
 
 void		s_cd(char **tab, int cs, t_pwd *pwd)
 {
-	(void)tab;
 	char	*data;
 	char	*msg;
 	char	*cur;
 
+	(void)tab;
 	data = NULL;
 	if ((data = ft_recvmsg(cs, data)) == NULL)
-		ft_putendl("unable to receive cd arg");
+		return ;
 	if (chdir(data) == -1)
 		msg = "ERROR";
 	else
@@ -61,7 +61,7 @@ void		s_cd(char **tab, int cs, t_pwd *pwd)
 		cur = getcwd(NULL, 0);
 		if (ft_strcmp(pwd->home, cur) == 0)
 			msg = ft_cdhome(pwd, cur);
-		else if (ft_strlen(pwd->home) < ft_strlen(cur)) //SOURCE DE HACK
+		else if (ft_strlen(pwd->home) < ft_strlen(cur))
 			msg = ft_chdir(pwd, cur);
 		else
 		{
@@ -70,7 +70,5 @@ void		s_cd(char **tab, int cs, t_pwd *pwd)
 		}
 	}
 	free(data);
-	ft_putendl(msg);
-	if (!ft_sendmsg(cs, msg))
-		ft_putendl("unable to send msg");
+	ft_sendmsg(cs, msg);
 }

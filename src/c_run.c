@@ -37,7 +37,7 @@ void		c_run(char *host, int port)
 	if (sock == -1)
 		return ;
 	run = 1;
-	ft_putendl("Welcome to f_tp v0.1");
+	ft_putendl("Welcome to ft_p v0.1");
 	while (run)
 	{
 		ft_putstr("$ > ");

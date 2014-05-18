@@ -10,11 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#include <sys/socket.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include "ftp.h"
 #include "libft.h"
 
@@ -51,9 +47,6 @@ static t_pwd	*init_pwd(void)
 	pwd->serv = ft_strdup("/");
 	pwd->local = getpwd();
 	pwd->home = ft_strdup(pwd->local);
-	printf("%s\n", pwd->serv);
-	printf("%s\n", pwd->local);
-	printf("%s\n", pwd->home);
 	if (pwd->local == NULL || !*(pwd->local))
 		return (NULL);
 	return (pwd);
@@ -68,14 +61,13 @@ void			s_child(int cs)
 	pwd = init_pwd();
 	if (pwd == NULL)
 	{
-		ft_putendl("wrong pwd. program stop");
+		ft_putendl("Wrong pwd. program stop");
 		return ;
 	}
-	ft_putendl("A client is connected !");
 	while (1)
 	{
 		if ((buf = ft_recvmsg(cs, buf)) == NULL)
-			ft_putendl("unable to receive cmd");
+			break ;
 		if (ft_strcmp(buf, "quit") == 0)
 			break ;
 		else

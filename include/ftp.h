@@ -37,7 +37,6 @@ typedef struct	s_scmds
 
 typedef struct	s_header
 {
-	char		*name;
 	int			size;
 }				t_header;
 
@@ -65,6 +64,12 @@ void	c_cmd(char *buf, int sock, int *run);
 int		c_create(char *host, int port);
 
 /*
+** c_get.c
+*/
+
+void	c_get(char **tab, int sock);
+
+/*
 ** c_list.c
 */
 
@@ -75,6 +80,12 @@ void	c_list(char **tab, int sock);
 */
 
 void	c_ls(char **tab, int sock);
+
+/*
+** c_put.c
+*/
+
+void	c_put(char **tab, int sock);
 
 /*
 ** c_pwd.c
@@ -98,8 +109,10 @@ void	c_usage(char *name);
 ** msg.c
 */
 
-char	*ft_recvmsg(int sock, char *msg);
-int		ft_sendmsg(int sock, char *msg);
+int		ft_recvfile(int sock, char *name);
+void	*ft_recvmsg(int sock, void *msg);
+int		ft_sendmsg(int sock, void *msg);
+int		ft_sendfile(int sock, int fd, int size);
 
 /*
 ** s_cd.c
@@ -125,12 +138,23 @@ void	s_cmd(int cs, char *buf, t_pwd *pwd);
 
 int		s_create(int port);
 
+/*
+** s_get.c
+*/
+
+void	s_get(char **tab, int cs, t_pwd *pwd);
 
 /*
 ** s_ls.c
 */
 
 void	s_ls(char **tab, int cs, t_pwd *pwd);
+
+/*
+** s_put.c
+*/
+
+void	s_put(char **tab, int sock, t_pwd *pwd);
 
 /*
 ** s_pwd.c

@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/socket.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include "ftp.h"
 #include "libft.h"
 

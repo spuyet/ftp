@@ -11,7 +11,7 @@ int			main(int ac, char **av)
 	{
 		port = ft_atoi(av[2]);
 		c_run(av[1], port);
-		ft_putendl("connection is shutting down.");
+		ft_putendl("Connection is shutting down.");
 	}
 	return (0);
 }

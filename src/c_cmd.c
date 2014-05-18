@@ -20,6 +20,15 @@ static void		c_error(char **tab, int sock)
 	ft_putendl(": Unknow command");
 }
 
+static t_cmds const g_funcs[]={
+	{"list", &c_list},
+	{"ls", &c_ls},
+	{"pwd", &c_pwd},
+	{"cd", &c_cd},
+	{"get", &c_get},
+	{"put", &c_put},
+	{0, &c_error}
+};
 
 void			c_cmd(char *buf, int sock, int *run)
 {
@@ -29,29 +38,19 @@ void			c_cmd(char *buf, int sock, int *run)
 
 	i = 0;
 	b = 0;
-	if (!ft_strcmp(buf, "quit"))
-	{
-		*run = 0;
+	if (!ft_strcmp(buf, "quit") && (*run)--)
 		return ;
-	}
 	tab = ft_strsplit(buf, ' ');
-	static t_cmds const funcs[]={
-		{"list", &c_list},
-		{"ls", c_ls},
-		{"pwd", c_pwd},
-		{"cd", c_cd},
-		{0, c_error}
-	};
-	while (funcs[i].cmd)
+	while (g_funcs[i].cmd)
 	{
-		if (ft_strcmp(funcs[i].cmd, tab[0]) == 0 && ++b)
+		if (ft_strcmp(g_funcs[i].cmd, tab[0]) == 0 && ++b)
 		{
-			funcs[i].f(tab, sock);
+			g_funcs[i].f(tab, sock);
 			break ;
 		}
 		i++;
 	}
-	if (!b)
-		funcs[i].f(tab, sock);
+		if (!b)
+		g_funcs[i].f(tab, sock);
 	free_tab(tab);
 }

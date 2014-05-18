@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/socket.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "ftp.h"
@@ -24,10 +23,10 @@ void	c_ls(char **tab, int sock)
 	if (c_args(tab))
 		return ;
 	if (!ft_sendmsg(sock, tab[0]))
-		ft_putendl("unable to send cmd");
+		ft_putendl("Unable to send cmd");
 	data = ft_recvmsg(sock, data);
 	if (data == NULL)
-		ft_putendl("unable to receive message");
+		ft_putendl("Unable to receive message");
 	else
 	{
 		ft_putendl(data);
