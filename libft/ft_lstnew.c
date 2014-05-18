@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/30 15:39:20 by spuyet            #+#    #+#             */
-/*   Updated: 2014/01/03 08:27:18 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:37:18 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list		*new;
 
-	new = (t_list *) malloc(sizeof(t_list));
+	new = (t_list *)malloc(sizeof(t_list));
 	if (new)
 	{
 		if (content)
 		{
-			new->content = (void *) malloc(sizeof(content_size));
+			new->content = (void *)malloc(sizeof(content_size));
 			if (new->content)
 				fill_new(new, content, content_size);
 			else
 			{
-				free((void * ) new);
+				free((void *)new);
 				return (NULL);
 			}
 		}

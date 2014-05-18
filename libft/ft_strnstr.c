@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 20:00:20 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/01 19:19:38 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:49:51 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	if (s1 && s1)
 	{
 		s2_len = ft_strlen(s2);
-		str1 = (char *) s1;
+		str1 = (char *)s1;
 		if (ft_strlen(str1) < s2_len)
 			return (NULL);
 		if (!s2_len)

@@ -6,10 +6,11 @@
 /*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/16 10:32:56 by spuyet            #+#    #+#             */
-/*   Updated: 2014/05/16 10:37:19 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 22:11:27 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/socket.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "ftp.h"

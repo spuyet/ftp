@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 18:57:09 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/01 19:17:17 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:49:01 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	char			*str2;
 	size_t			i;
 
-	str1 = (char *) s1;
-	str2 = (char *) s2;
+	str1 = (char *)s1;
+	str2 = (char *)s2;
 	i = 0;
 	while (i < n)
 	{

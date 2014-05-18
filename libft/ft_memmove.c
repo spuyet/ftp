@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 15:45:56 by spuyet            #+#    #+#             */
-/*   Updated: 2014/05/12 13:50:45 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:40:52 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void		*ft_memmove(void *s1, const void *s2, size_t len)
 	unsigned char		*dest;
 	unsigned char		*src;
 
-	dest = (unsigned char *) s1;
-	src = (unsigned char *) s2;
+	dest = (unsigned char *)s1;
+	src = (unsigned char *)s2;
 	if (src != dest && len > 0)
 		ft_move(dest, src, len);
-	return ((void *) s1);
+	return ((void *)s1);
 }

@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 11:49:01 by spuyet            #+#    #+#             */
-/*   Updated: 2014/01/03 08:28:54 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:51:35 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static t_read		*ft_newread(int fd)
 	return (red);
 }
 
-static int			ft_print(int n, t_read **tab, t_read **s, char** l)
+static int			ft_print(int n, t_read **tab, t_read **s, char **l)
 {
 	char			*tmpstr;
 	int				index;

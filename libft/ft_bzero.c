@@ -6,7 +6,7 @@
 /*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 12:14:45 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/01 19:39:58 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:35:23 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_bzero(void *s, size_t n)
 	unsigned char		*ptr;
 
 	i = 0;
-	ptr = (unsigned char *) s;
+	ptr = (unsigned char *)s;
 	while (i < n)
 	{
 		ptr[i] = 0;

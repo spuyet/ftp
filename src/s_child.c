@@ -6,38 +6,14 @@
 /*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/16 10:32:20 by spuyet            #+#    #+#             */
-/*   Updated: 2014/05/16 13:07:11 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 22:01:06 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "ftp.h"
 #include "libft.h"
-
-extern char		**environ;
-
-static	char	*getpwd(void)
-{
-	char	*pwd;
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	if (environ == NULL)
-		return (NULL);
-	while (environ[i])
-	{
-		if (!ft_strncmp("PWD=", environ[i], 4))
-		{
-			tmp = ft_strsub(environ[i], 4, ft_strlen(environ[i]) - 4);
-			pwd = ft_strjoin3(tmp, "/", HOME);
-			free(tmp);
-			return (pwd);
-		}
-		i++;
-	}
-	return (NULL);
-}
 
 static t_pwd	*init_pwd(void)
 {
@@ -45,7 +21,7 @@ static t_pwd	*init_pwd(void)
 
 	pwd = (t_pwd *)malloc(sizeof(t_pwd));
 	pwd->serv = ft_strdup("/");
-	pwd->local = getpwd();
+	pwd->local = getcwd(NULL, 0);
 	pwd->home = ft_strdup(pwd->local);
 	if (pwd->local == NULL || !*(pwd->local))
 		return (NULL);
@@ -64,6 +40,7 @@ void			s_child(int cs)
 		ft_putendl("Wrong pwd. program stop");
 		return ;
 	}
+	ft_putendl("A client is online.");
 	while (1)
 	{
 		if ((buf = ft_recvmsg(cs, buf)) == NULL)

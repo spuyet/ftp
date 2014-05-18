@@ -6,7 +6,7 @@
 /*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 11:53:33 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/28 11:39:06 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:37:49 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memalloc(size_t size)
 	size_t			i;
 
 	i = 0;
-	ptr = (unsigned char *) malloc(size);
+	ptr = (unsigned char *)malloc(size);
 	if (ptr)
 	{
 		while (i < size)
@@ -28,5 +28,5 @@ void	*ft_memalloc(size_t size)
 			i++;
 		}
 	}
-	return ((void *) ptr);
+	return ((void *)ptr);
 }

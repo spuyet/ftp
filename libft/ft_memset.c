@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:12:53 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/01 19:01:09 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:41:34 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	*ft_memset(void *b, int c, size_t len)
 	unsigned char	convert;
 	unsigned char	*str;
 
-	str = (unsigned char *) b;
+	str = (unsigned char *)b;
 	i = 0;
-	convert = (unsigned char) c;
+	convert = (unsigned char)c;
 	while (i < len)
 	{
 		str[i] = convert;

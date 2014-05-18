@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/26 18:41:13 by spuyet            #+#    #+#             */
-/*   Updated: 2014/01/19 18:14:22 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:46:42 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ char		*ft_strfjoin(char *s1, char *s2)
 	char		*str3;
 	size_t		len;
 
-	str1 = (char *) s1;
-	str2 = (char *) s2;
+	str1 = (char *)s1;
+	str2 = (char *)s2;
 	if (str1 && str2)
 	{
 		len = ft_strlen(str1) + ft_strlen(str2) + 1;
-		str3 = (char *) malloc(len * sizeof(char));
+		str3 = (char *)malloc(len * sizeof(char));
 		fill_string(str1, str2, str3);
 		free(str1);
 		return (str3);

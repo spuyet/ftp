@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   s_get.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/05/18 19:14:11 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/18 21:54:06 by spuyet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -5,36 +17,31 @@
 #include "libft.h"
 #include "ftp.h"
 
-void	s_get(char **tab, int cs, t_pwd *pwd)
+static void		sget2(int fd, int cs, struct stat *buf)
+{
+	if (fstat(fd, buf) == -1)
+		ft_sendmsg(cs, "ERROR");
+	else
+	{
+		ft_sendmsg(cs, "OK");
+		ft_sendfile(cs, fd, buf->st_size);
+	}
+	close(fd);
+}
+
+void			s_get(char **tab, int cs, t_pwd *pwd)
 {
 	char		*name;
 	int			fd;
 	struct stat	buf;
 
-	name = 0;
 	(void)tab;
 	(void)pwd;
-	ft_putendl("waiting filename");
+	name = 0;
 	if ((name = ft_recvmsg(cs, name)) == 0)
 		ft_putendl("unable to receive file name");
-	ft_putendl("opening file");
 	if ((fd = open(name, O_RDONLY)) == -1)
 		ft_sendmsg(cs, "ERROR");
 	else
-	{
-		ft_putendl("file open");
-		if (fstat(fd, &buf) == -1)
-		{
-			ft_sendmsg(cs, "ERROR");
-			ft_putendl("unable to stat file");
-		}
-		else
-		{
-			ft_putendl("stat file ok");
-			ft_sendmsg(cs, "OK");
-			ft_putendl("sending file");
-			ft_sendfile(cs, fd, buf.st_size);
-		}
-		close(fd);
-	}
+		sget2(fd, cs, &buf);
 }

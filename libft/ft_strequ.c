@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/26 23:50:39 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/01 19:10:57 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:46:10 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_strequ(char const *s1, char const *s2)
 	char		*str1;
 	char		*str2;
 
-	str1 = (char *) s1;
-	str2 = (char *) s2;
+	str1 = (char *)s1;
+	str2 = (char *)s2;
 	i = 0;
 	if (str1 && str2)
 	{

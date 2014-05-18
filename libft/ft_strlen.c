@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 18:10:49 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/01 19:14:40 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:48:10 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_strlen(const char *s)
 	char		*str;
 
 	i = 0;
-	str = (char *) s;
+	str = (char *)s;
 	while (str[i] != '\0')
 		i++;
 	return (i);

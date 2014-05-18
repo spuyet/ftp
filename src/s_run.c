@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   s_run.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/05/18 19:30:26 by spuyet            #+#    #+#             */
+/*   Updated: 2014/05/18 22:02:54 by spuyet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/stat.h>
 #include <dirent.h>
 #include <netinet/in.h>
@@ -15,7 +27,7 @@ static void	s_thread(int *run, int sock, int *cs)
 		return ;
 	*run = 0;
 	s_child(*cs);
-	ft_putendl("A client left the connection.");
+	ft_putendl("A client is offline");
 	close(*cs);
 }
 

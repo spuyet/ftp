@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/26 23:57:23 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/01 19:15:31 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:48:46 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char		*dst;
 	size_t		i;
 
-	src = (char *) s;
+	src = (char *)s;
 	if (src && f)
 	{
 		dst = ft_strnew(ft_strlen(s));

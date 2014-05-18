@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/25 00:13:25 by spuyet            #+#    #+#             */
-/*   Updated: 2013/12/01 19:09:35 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:44:23 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strcpy(char *s1, const char *s2)
 {
 	char	*str;
 
-	str = (char *) s1;
+	str = (char *)s1;
 	while (*s2)
 	{
 		*str = *s2;

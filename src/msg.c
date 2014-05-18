@@ -6,7 +6,7 @@
 /*   By: spuyet <spuyet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/15 16:31:19 by spuyet            #+#    #+#             */
-/*   Updated: 2014/05/16 10:38:02 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 21:55:09 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void		*ft_recvmsg(int sock, void *msg)
 {
 	t_header	h;
 
-	if (recv(sock, &h, sizeof(t_header), MSG_WAITALL) <  0)
+	if (recv(sock, &h, sizeof(t_header), MSG_WAITALL) < 0)
 	{
 		ft_putendl("unable to receive header");
 		return (0);
 	}
 	msg = ft_strnew(h.size);
-	if (recv(sock, msg, h.size, MSG_WAITALL) <  1)
+	if (recv(sock, msg, h.size, MSG_WAITALL) < 1)
 	{
 		ft_putendl("unable to receive message");
 		return (0);
@@ -66,12 +66,10 @@ int			ft_sendfile(int sock, int fd, int size)
 		ft_putendl("unable to send header");
 		return (0);
 	}
-	ft_putnbr(h.size);
 	if (send(sock, buf, size, 0) < 0)
 	{
 		ft_putendl("unable to send file");
 		return (0);
-		
 	}
 	return (1);
 }
@@ -83,13 +81,12 @@ int			ft_recvfile(int sock, char *name)
 	int			fd;
 
 	ft_bzero(&h, sizeof(t_header));
-	if (recv(sock,  &h, sizeof(t_header), MSG_WAITALL) < 0)
+	if (recv(sock, &h, sizeof(t_header), MSG_WAITALL) < 0)
 	{
 		ft_putendl("unable to receive header");
 		return (0);
 	}
-	file = ft_memalloc(h.size);
-	if (file == 0)
+	if ((file = ft_memalloc(h.size)) == 0)
 	{
 		ft_putendl("malloc failed");
 		return (0);

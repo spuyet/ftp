@@ -6,7 +6,7 @@
 /*   By: spuyet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/27 15:50:42 by spuyet            #+#    #+#             */
-/*   Updated: 2014/01/12 19:52:57 by spuyet           ###   ########.fr       */
+/*   Updated: 2014/05/18 19:50:39 by spuyet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void		fill_tab(char **tab, char c, char const *s)
 	{
 		j = 0;
 		count = skip_char(s, c, count);
-		tab[i] = (char *) malloc((letters(s, c, count) + 1) * sizeof(char));
+		tab[i] = (char *)malloc((letters(s, c, count) + 1) * sizeof(char));
 		if (tab[i] != NULL)
 		{
 			while (s[count] != c && s[count] != '\0')
@@ -94,7 +94,7 @@ char			**ft_strsplit(char const *s, char c)
 	if (s)
 	{
 		words = count_words(s, c);
-		tab = (char **) malloc((words + 1) * sizeof(char *));
+		tab = (char **)malloc((words + 1) * sizeof(char *));
 		if (tab)
 			fill_tab(&(*tab), c, s);
 	}
